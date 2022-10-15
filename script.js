@@ -30,15 +30,36 @@ request1.onload=function(){
 let request2=new XMLHttpRequest();
 request2.open("GET","https://restcountries.com/v2/all");
 request2.send();
- var temp=[].join("");
 request2.onload=function(){
     let resc=JSON.parse(request2.response);
         for(var i=0;i<resc.length;i++){
     console.log("name : "+resc[i].name,", capital : "+resc[i].capital,", flag : "+resc[i].flag);
-        }
         
-       }
-       temp.forEach(details)
-             function details(item) {
-                  console.log(item);
-             }
+    }
+}
+        
+//d.Print the total population of countries using reduce function
+     
+let request3=new XMLHttpRequest();
+request3.open("GET","https://restcountries.com/v2/all");
+request3.send();
+request3.onload=function(){
+    let papu=JSON.parse(request3.response);
+    let totalpapu=papu.reduce((acc,cv)=>acc+cv.population,0);
+    console.log(totalpapu);
+}
+
+//e.Print the country which uses US Dollars as currency.
+
+let request4=new XMLHttpRequest();
+request4.open("GET","https://restcountries.com/v2/all");
+request4.send();
+request4.onload=function(){
+    let curr=JSON.parse(request4.response);
+      console.log(curr);
+    let doll=curr.filter((ele)=>ele.currencies==="United States dollar");
+    console.log(doll);
+    let dolcu=doll.map((ele)=>ele.name);
+    console.log(dolcu);
+}
+    
